@@ -30,7 +30,7 @@ func InitDB(cfg DatabaseConfig) *gorm.DB {
 		panic(err)
 	}
 
-	if err := db.AutoMigrate(&models.User{}); err != nil {
+	if err := db.AutoMigrate(&models.User{}, &models.UserTOTP{}, &models.UserSessions{}); err != nil {
 		logger.Logger.Error("Failed to migrate models", "err", err.Error())
 		panic(err)
 	}

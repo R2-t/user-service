@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Local.DockerFile
-    image: wordlee-backend:0.4
+    image: wordlee-backend:0.1
     ports:
       - "8082:${SERVICE_PORT}"
     environment:

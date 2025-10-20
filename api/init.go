@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"santiagotorres.me/user-service/logger"
 	"santiagotorres.me/user-service/models"
+	"santiagotorres.me/user-service/repositories"
 )
 
 type AppState struct {
@@ -36,7 +37,13 @@ func (appState *AppState) SignUp(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{})
+	userId, err := repositories.CreateUser(&user, appState)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{})
+	}
+
+	c.JSON(http.StatusCreated, gin.H{"userID": userId})
 }
 
 func (appState *AppState) LogIn(c *gin.Context) {

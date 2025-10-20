@@ -17,14 +17,14 @@ RUN --mount=type=cache,target=/app/.cache/go-build \
     --mount=type=cache,target=/app/.cache/go-mod \
     GOOS=linux go build \
     -ldflags='-w -s -extldflags "-static"' \
-    -o wordlee-app-backend .
+    -o user-service .
 
 FROM scratch
 
 ENV SERVICE_PORT=8080
 
-COPY --from=BUILDER /usr/src/app/wordlee-app-backend /wordlee-app-backend
+COPY --from=BUILDER /usr/src/app/user-service /user-service
 
 EXPOSE $SERVICE_PORT
 
-CMD [ "./wordlee-app-backend" ]
+CMD [ "./user-service" ]

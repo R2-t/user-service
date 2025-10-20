@@ -1,9 +1,10 @@
 package models
 
 import (
+	"time"
+
 	"github.com/google/uuid"
 	"gorm.io/datatypes"
-	"time"
 )
 
 type User struct {
@@ -34,4 +35,12 @@ type UserSessions struct {
 	IsRevoked      bool       `gorm:"default:false"`
 	CreatedAt      *time.Time `gorm:"default:now()"`
 	UserID         uuid.UUID
+}
+
+type DeviceInfo struct {
+	IPAddress  string `json:"ip_address"`
+	UserAgent  string `json:"user_agent"`
+	DeviceType string `json:"device_type,omitempty"`
+	Browser    string `json:"browser,omitempty"`
+	OS         string `json:"os,omitempty"`
 }

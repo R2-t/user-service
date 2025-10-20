@@ -10,6 +10,7 @@ type Settings struct {
 	DbPassword  string
 	ServicePort string
 	ServiceName string
+	JWTSecret   string
 }
 
 func getEnvOrDefault(key string, defaultValue string) string {
@@ -28,5 +29,6 @@ func GetSettings() *Settings {
 		DbPassword:  getEnvOrDefault("DB_PASSWORD", "password"),
 		ServicePort: getEnvOrDefault("SERVICE_PORT", "8080"),
 		ServiceName: getEnvOrDefault("SERVICE_NAME", "wordlee-app-backend"),
+		JWTSecret:   getEnvOrDefault("JWT_SECRET", "secret"),
 	}
 }

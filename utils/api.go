@@ -7,7 +7,7 @@ import (
 )
 
 // Extract device information from request
-func extractDeviceInfo(c *gin.Context) models.DeviceInfo {
+func ExtractDeviceInfo(c *gin.Context) models.DeviceInfo {
 	uaParser := useragent.NewParser()
 
 	userAgent := uaParser.Parse(c.GetHeader("User-Agent"))

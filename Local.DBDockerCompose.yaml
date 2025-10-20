@@ -1,6 +1,6 @@
 services:
   wordlee-database:
-    container_name: wordlee-db
+    container_name: user-service-db
     image: postgres:latest
     environment:
       POSTGRES_USER: ${DB_USER}
@@ -9,9 +9,9 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - wordlee-postgresdb-data:/var/lib/postgresql/data
+      - user-service-postgresdb-data:/var/lib/postgresql/data
     networks:
-      - wordlee-network
+      - user-service-network
 
   pgadmin:
     image: dpage/pgadmin4
@@ -20,12 +20,14 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     ports:
       - "5050:80"
+    networks:
+      - user-service-network
 
 networks:
-  wordlee-network:
-    name: wordlee-network
+  user-service-network:
+    name: user-service-network
     driver: bridge
 
 volumes:
-  wordlee-postgresdb-data:
-    name: wordlee-postgresdb-data
+  user-service-postgresdb-data:
+    name: user-service-postgresdb-data

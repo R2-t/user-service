@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/gin-gonic/gin"
 	"santiagotorres.me/user-service/api"
 	"santiagotorres.me/user-service/configs"
@@ -28,6 +29,7 @@ func main() {
 	r := gin.Default()
 
 	appState.SetupRoutes(r)
+	appState.SetUpAuthRoutes(r)
 
 	err := r.Run(fmt.Sprintf(":%s", settings.ServicePort))
 	if err != nil {

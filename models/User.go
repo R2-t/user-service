@@ -28,13 +28,15 @@ type UserTOTP struct {
 }
 
 type UserSessions struct {
-	UserSessionsID uuid.UUID `gorm:"primaryKey;type:uuid;default:gen_random_uuid()"`
-	TokenID        string    `gorm:"uniqueIndex"`
-	TokenHash      string
-	DeviceInfo     datatypes.JSON
-	IsRevoked      bool       `gorm:"default:false"`
-	CreatedAt      *time.Time `gorm:"default:now()"`
-	UserID         uuid.UUID
+	UserSessionsID   uuid.UUID `gorm:"primaryKey;type:uuid;default:gen_random_uuid()"`
+	TokenID          string    `gorm:"uniqueIndex"`
+	TokenHash        string
+	RefreshTokenID   string `gorm:"uniqueIndex"`
+	RefreshTokenHash string
+	DeviceInfo       datatypes.JSON
+	IsRevoked        bool       `gorm:"default:false"`
+	CreatedAt        *time.Time `gorm:"default:now()"`
+	UserID           uuid.UUID
 }
 
 type DeviceInfo struct {

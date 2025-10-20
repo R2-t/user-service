@@ -6,8 +6,9 @@ import (
 )
 
 const (
-	TempAuth    = "temp_auth"
-	AccessToken = "access_token"
+	TempAuth     = "temp_auth"
+	AccessToken  = "access_token"
+	RefreshToken = "refresh_token"
 )
 
 type Claims struct {
@@ -16,4 +17,9 @@ type Claims struct {
 	TokenType    string    `json:"type"` // "temp_auth" or "access_token"
 	TOTPVerified bool      `json:"totp_verified"`
 	jwt.RegisteredClaims
+}
+
+type PairToken struct {
+	AccessToken  string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
 }

@@ -1,0 +1,23 @@
+meta {
+  name: signup
+  type: http
+  seq: 2
+}
+
+post {
+  url: 127.0.0.1:8080/auth/signup
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Santiago",
+    "email": "santiago@test.com",
+    "password": "Python14!?"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

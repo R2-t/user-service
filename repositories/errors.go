@@ -13,6 +13,9 @@ const (
 	ErrCodeHashingError
 	ErrCodeTokenGenerationError
 	ErrCodeInvalidInput
+	ErrCodeTOTPGenerationError
+	ErrCodeInvalidToken
+	ErrCodeTokenExpired
 )
 
 // RepositoryError represents a custom error type for repository operations

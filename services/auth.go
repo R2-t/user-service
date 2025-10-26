@@ -135,7 +135,7 @@ func GenerateTokenWithSession(
 }
 
 // ValidateToken validates a JWT token and returns the claims.
-func ValidateToken(tokenString string, jwtSecret string) (*models.Claims, error) {
+func ValidateToken(tokenString string, jwtSecret string) (*jwt.Token, *models.Claims, error) {
 	token, err := jwt.ParseWithClaims(tokenString, &models.Claims{}, func(token *jwt.Token) (any, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, errors.New("unexpected signing method")
@@ -144,14 +144,14 @@ func ValidateToken(tokenString string, jwtSecret string) (*models.Claims, error)
 	})
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	if claims, ok := token.Claims.(*models.Claims); ok && token.Valid {
-		return claims, nil
+		return token, claims, nil
 	}
 
-	return nil, errors.New("invalid token")
+	return nil, nil, errors.New("invalid token")
 }
 
 // RevokeSession revokes a user session by token ID.

@@ -3,14 +3,15 @@ package configs
 import "os"
 
 type Settings struct {
-	DbPort      string
-	DbHost      string
-	DBName      string
-	DbUser      string
-	DbPassword  string
-	ServicePort string
-	ServiceName string
-	JWTSecret   string
+	DbPort        string
+	DbHost        string
+	DBName        string
+	DbUser        string
+	DbPassword    string
+	ServicePort   string
+	ServiceName   string
+	JWTSecret     string
+	EncryptionKey string
 }
 
 func getEnvOrDefault(key string, defaultValue string) string {
@@ -30,5 +31,7 @@ func GetSettings() *Settings {
 		ServicePort: getEnvOrDefault("SERVICE_PORT", "8080"),
 		ServiceName: getEnvOrDefault("SERVICE_NAME", "wordlee-app-backend"),
 		JWTSecret:   getEnvOrDefault("JWT_SECRET", "secret"),
+		// Dummy key, PLEASE DO NOT USE IN PRODUCTION
+		EncryptionKey: getEnvOrDefault("ENCRYPTION_KEY", "T4ounh17Om9eLI0am09+PCqNXx6ce0ptP44sWhudf04="),
 	}
 }

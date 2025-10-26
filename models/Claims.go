@@ -14,7 +14,7 @@ const (
 type Claims struct {
 	UserID       uuid.UUID `json:"user_id"`
 	Email        string    `json:"email"`
-	TokenType    string    `json:"type"` // "temp_auth" or "access_token"
+	TokenType    string    `json:"type"` // "temp_auth" or "access_token" or "refresh_token"
 	TOTPVerified bool      `json:"totp_verified"`
 	jwt.RegisteredClaims
 }

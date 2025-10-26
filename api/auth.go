@@ -17,6 +17,7 @@ func (appState *AppState) SetUpAuthRoutes(r *gin.Engine) {
 	{
 		authRouter.POST("/signup", appState.SignUp)
 		authRouter.POST("/login", appState.Login)
+		authRouter.POST("/register-totp", appState.CheckJWT(), appState.RegisterTOTP)
 		authRouter.POST("/refresh", func(context *gin.Context) {
 
 		})
@@ -143,4 +144,8 @@ func (appState *AppState) Login(context *gin.Context) {
 	}
 
 	context.JSON(http.StatusOK, tokens)
+}
+
+func (appState *AppState) RegisterTOTP(context *gin.Context) {
+	// Implement TOTP registration logic here
 }
